@@ -15,13 +15,14 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('category')->nullable();
             $table->string('status')->nullable();
+
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }
 
-
-
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('projects');
     }
