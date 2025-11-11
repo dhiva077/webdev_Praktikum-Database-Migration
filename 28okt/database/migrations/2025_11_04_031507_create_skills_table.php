@@ -8,17 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('moods', function (Blueprint $table) {
+                Schema::create('skills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // relasi ke users
-            $table->string('mood'); // contoh: Happy, Sad, dll
-            $table->text('note')->nullable(); // catatan mood
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('level')->nullable();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('moods');
+        Schema::dropIfExists('skills');
     }
 };

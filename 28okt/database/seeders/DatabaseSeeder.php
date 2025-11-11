@@ -5,8 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Project;
-use App\Models\Journal;
-use App\Models\Mood;
+use App\Models\Education;
+use App\Models\Skill;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,29 +18,26 @@ class DatabaseSeeder extends Seeder
         // Buat 5 user dummy
         $users = User::factory(5)->create();
 
-        // Untuk setiap user, buat project, journal, dan mood yang berelasi
+        // Untuk setiap user, buat project, education, dan skill yang berelasi
         $users->each(function ($user) {
-            // Relasi: satu user punya banyak project
+
             Project::factory(3)->create([
                 'user_id' => $user->id,
             ]);
 
-            // Relasi: satu user punya banyak journal
-            Journal::factory(2)->create([
+            Education::factory(2)->create([
                 'user_id' => $user->id,
             ]);
 
-            // Relasi: satu user punya banyak mood
-            Mood::factory(2)->create([
+            Skill::factory(3)->create([
                 'user_id' => $user->id,
             ]);
         });
 
-        // Tambahkan user test hanya jika belum ada
-        if (!User::where('email', 'test@example.com')->exists()) {
+        if (!User::where('email', 'dhivakesuma@gmail.com')->exists()) {
             User::factory()->create([
                 'name' => 'Test User',
-                'email' => 'test@example.com',
+                'email' => 'dhivakesuma@gmail.com',
             ]);
         }
     }
